@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from "@/components/ui/toaster"; //Check here, keep it or remove it.
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ['latin'] })
