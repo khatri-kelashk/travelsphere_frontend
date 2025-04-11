@@ -1,25 +1,23 @@
 // app/containers/Dashboard/index.tsx
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { useToast } from '@/components/ui/use-toast'
+} from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation'
 
 export default function Dashboard() {
-  const router = useRouter()
-  const { toast } = useToast()
+  const router = useRouter();
 
   const handleLogout = () => {
     localStorage.clear()
-    toast({
+    /*toast({
       title: 'Logged out successfully',
-    })
+    })*/
     router.push('/')
   }
 

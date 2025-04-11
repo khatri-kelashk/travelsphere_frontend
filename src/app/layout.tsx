@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import { Toaster } from "@/components/ui/toaster"; //Check here, keep it or remove it.
 
 import "./globals.css";
 
@@ -31,10 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
       >
-        <Providers>
           {children}
-          <Toaster />
-        </Providers>
       </body>
     </html>
   );

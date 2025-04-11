@@ -19,8 +19,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { useToast } from '@/components/ui/use-toast';
-import API_URL from '../../constants';
+import {API_URL} from '../../../constants';
 
 // Define form schema
 const formSchema = z.object({
@@ -30,7 +29,6 @@ const formSchema = z.object({
 
 export default function LoginPage() {
   const router = useRouter();
-  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   // Initialize the form
@@ -54,31 +52,31 @@ export default function LoginPage() {
       });
 
       if (data.success) {
-        toast({
+        /*toast({
           title: 'Success',
           description: data.message,
-        });
+        });*/
 
-        const decodedUser = jwtDecode(data.token);
-        localStorage.setItem('user_id', decodedUser.id as string);
+        const decodedUser: any = jwtDecode(data.token);
+        localStorage.setItem('user_id', decodedUser?.id as string);
         localStorage.setItem('tokenType', data.tokenType);
         localStorage.setItem('token', data.token);
         localStorage.setItem('logger_id', data.logger_id);
         
         router.refresh();
       } else {
-        toast({
+        /*toast({
           title: 'Error',
           description: data.message,
           variant: 'destructive',
-        });
+        });*/
       }
     } catch (error) {
-      toast({
+      /*toast({
         title: 'Error',
         description: error.message,
         variant: 'destructive',
-      });
+      });*/
     } finally {
       setLoading(false);
     }

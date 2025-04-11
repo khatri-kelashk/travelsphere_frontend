@@ -1,13 +1,11 @@
 'use client'
 
-import { ReactNode, useEffect } from 'react'
-import axios from 'axios'
-import { useToast } from '@/components/ui/use-toast'
+import { ReactNode, useEffect } from 'react';
+import axios from 'axios';
 import {getHeadersForHttpReq} from '../constants/token'
 import {API_URL} from '../constants'
 
 export function Providers({ children }: { children: ReactNode }) {
-  const { toast } = useToast()
 
   useEffect(() => {
     const heartbeat = async () => {
@@ -24,25 +22,25 @@ export function Providers({ children }: { children: ReactNode }) {
         const { success } = response.data
         
         if (!success) {
-          toast({
+          /*toast({
             title: 'Session Expired',
             description: 'System is going to Logout..',
             duration: 3000,
-          })
+          })*/
           
           await new Promise(resolve => setTimeout(resolve, 2000))
           localStorage.clear()
           window.location.reload()
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Heart Beat Error:', error)
         if (error.response?.status) {
-          toast({
+          /*toast({
             variant: "destructive",
             title: "Session Error",
             description: "System is going to Logout..",
             duration: 3000,
-          })
+          })*/
           
           await new Promise(resolve => setTimeout(resolve, 2000))
           localStorage.clear()
@@ -55,7 +53,7 @@ export function Providers({ children }: { children: ReactNode }) {
     heartbeat() // Call immediately
 
     return () => clearInterval(intervalId)
-  }, [toast])
+  }, [/*toast*/])
 
   return <>{children}</>
 }
