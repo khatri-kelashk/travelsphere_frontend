@@ -1,17 +1,14 @@
 // app/page.tsx
 'use client'
 
-
-'use client'
-
 import React, { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import axios from 'axios'
 import { toast } from 'sonner'
 import Login from './containers/Login/index';
 import Dashboard from './containers/Dashboard/index';
-import { getHeadersForHttpReq } from '@/constants/token'
-import { API_URL } from '@/constants'
+import { getHeadersForHttpReq } from '../constants/token'
+import { API_URL } from '../constants'
 
 const App = () => {
   const router = useRouter()
@@ -58,6 +55,8 @@ const App = () => {
 
   // Redirect logic based on authentication status
   useEffect(() => {
+    console.log({pathname, router});
+    
     const isLoggedIn = !!localStorage.getItem('logger_id')
     
     if (pathname === '/' && isLoggedIn) {
