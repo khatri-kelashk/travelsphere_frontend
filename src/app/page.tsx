@@ -57,11 +57,15 @@ const App = () => {
   useEffect(() => {
     console.log({pathname, router});
     
-    const isLoggedIn = !!localStorage.getItem('logger_id')
-    
-    if (pathname === '/' && isLoggedIn) {
-      router.push('/dashboard')
-    } else if (pathname.startsWith('/dashboard') && !isLoggedIn) {
+    const isLoggedIn = !!localStorage.getItem('logger_id');
+    if (isLoggedIn) {
+      if (pathname === '/') {
+        router.push('/dashboard')
+      }
+    }
+    /*else if (pathname.startsWith('/dashboard') && !isLoggedIn) {
+      router.push('/login')
+    } */else {
       router.push('/login')
     }
   }, [pathname, router])
