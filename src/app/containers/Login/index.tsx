@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'sonner';
 import {
   Form,
   FormControl,
@@ -20,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import {API_URL} from '../../../constants';
+import { ExecException } from 'child_process';
 
 // Define form schema
 const formSchema = z.object({
@@ -52,10 +54,7 @@ export default function LoginPage() {
       });
 
       if (data.success) {
-        /*toast({
-          title: 'Success',
-          description: data.message,
-        });*/
+        toast.message(data.message);
 
         const decodedUser: any = jwtDecode(data.token);
         localStorage.setItem('user_id', decodedUser?.id as string);
@@ -65,18 +64,10 @@ export default function LoginPage() {
         
         router.refresh();
       } else {
-        /*toast({
-          title: 'Error',
-          description: data.message,
-          variant: 'destructive',
-        });*/
+        toast.error(data.message);
       }
-    } catch (error) {
-      /*toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });*/
+    } catch (error: any) {
+        toast.error(error.message);
     } finally {
       setLoading(false);
     }
